@@ -4,13 +4,13 @@ public class CalcBasicApplication {
 
     public static void main(String[] args) {
 
-        CalcView calcView = new CalcView();
+//        ICalcView iCalcView = new ConsoleView();
+//
+//        CalcModel calcModel = new CalcModel();
 
-        CalcModel calcModel = new CalcModel();
+        CalcCtrl calcCtrl = new CalcCtrl(new ConsoleView(),new CalcModel());
 
-        CalcController calcController = new CalcController(calcView, calcModel);
-
-        calcView.setVisible(true);
+//        calcView.setVisible(true);
 
     }
 }
