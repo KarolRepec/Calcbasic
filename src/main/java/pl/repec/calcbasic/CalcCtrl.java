@@ -1,13 +1,20 @@
 package pl.repec.calcbasic;
 
 
-public class CalcCtrl {
-    private ICalcView iCalcView;
-    private CalcModel calcModel;
+public class CalcCtrl implements ViewControllerCallback {
+     ICalcView iCalcView;
+     CalcModel calcModel;
 
-    public CalcCtrl(ICalcView iCalcView, CalcModel calcModel) {
-        this.iCalcView = iCalcView;
-        this.calcModel = calcModel;
+    public CalcCtrl() {
+//        this.iCalcView = iCalcView;
+//        iCalcView.setCallbackHandler(this);
+//        this.calcModel = calcModel;
+        //init();
+    }
+
+    public void init(ViewControllerCallback callback) {
+        iCalcView.setCallbackHandler(callback);
+        iCalcView.start();
     }
 
     public void addNumbers() {
@@ -21,9 +28,7 @@ public class CalcCtrl {
             calcModel.addTwoNumbers(firstNumber, secondNumber);
 
             iCalcView.setResult(calcModel.getResult());
-        }
-
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             iCalcView.displayError("you need to input two numbers");
         }
 
@@ -40,9 +45,7 @@ public class CalcCtrl {
             calcModel.subtractTwoNUmbers(firstNumber, secondNumber);
 
             iCalcView.setResult(calcModel.getResult());
-        }
-
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             iCalcView.displayError("you need to input two numbers");
         }
 
@@ -59,9 +62,7 @@ public class CalcCtrl {
             calcModel.multiplyTwoNumbers(firstNumber, secondNumber);
 
             iCalcView.setResult(calcModel.getResult());
-        }
-
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             iCalcView.displayError("you need to input two numbers");
         }
 
@@ -78,11 +79,20 @@ public class CalcCtrl {
             calcModel.devideTwoNumbers(firstNumber, secondNumber);
 
             iCalcView.setResult(calcModel.getResult());
-        }
-
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             iCalcView.displayError("you need to input two numbers");
         }
 
+    }
+
+    public Double getResult(Double firstDigit, Double secondDigit, OperationType operationType) {
+        switch (operationType) {
+            case ADDITION: {
+                calcModel.addTwoNumbers(firstDigit, secondDigit);
+            }
+            default:
+                System.out.println("Add your own actions");
+        }
+        return null;
     }
 }

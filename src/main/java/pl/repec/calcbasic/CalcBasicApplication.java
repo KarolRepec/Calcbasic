@@ -1,16 +1,23 @@
 package pl.repec.calcbasic;
 
+
 public class CalcBasicApplication {
 
     public static void main(String[] args) {
 
-//        ICalcView iCalcView = new ConsoleView();
-//
-//        CalcModel calcModel = new CalcModel();
+        Calculator calculator = new Calculator();
+    }
+}
 
-        CalcCtrl calcCtrl = new CalcCtrl(new ConsoleView(),new CalcModel());
+class Calculator {
 
-//        calcView.setVisible(true);
+    Calculator() {
+        ICalcView view = new ConsoleView();
+        CalcModel model = new CalcModel();
+        CalcCtrl calcCtrl = new CalcCtrl();
 
+        calcCtrl.calcModel = model;
+        calcCtrl.iCalcView = view;
+        calcCtrl.init(calcCtrl);
     }
 }

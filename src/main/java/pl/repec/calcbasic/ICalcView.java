@@ -2,6 +2,8 @@ package pl.repec.calcbasic;
 
 
 public interface ICalcView {
+
+    ViewControllerCallback callback = null;
     double getFirstNumber();
     double getSecondNumber();
     void setResult(double calcResult);
@@ -10,4 +12,6 @@ public interface ICalcView {
     void multiplyNumbers();
     void devideNumbers();
     void displayError(String errorMessage);
+    void setCallbackHandler(ViewControllerCallback callbackHandler);
+    void start();
 }
