@@ -1,26 +1,26 @@
 package pl.repec.calcbasic;
 
-public class CalcModel {
-    private double result;
+public class CalcModel implements ICalcModel {
+//    private double result;
 
 
-    Double addTwoNumbers(double firstNumber, double secondNumber) {
+    public Double addTwoNumbers(double firstNumber, double secondNumber) {
         return firstNumber + secondNumber;
     }
 
-    public void subtractTwoNUmbers(double firstNuber, double secondNumber) {
-        result = firstNuber - secondNumber;
+    public Double subtractTwoNUmbers(double firstNumber, double secondNumber) {
+        return firstNumber - secondNumber;
     }
 
-    public void multiplyTwoNumbers(double firstNumber, double secondNUmber) {
-        result = firstNumber * secondNUmber;
+    public Double multiplyTwoNumbers(double firstNumber, double secondNumber) {
+        return firstNumber * secondNumber;
     }
 
-    public void devideTwoNumbers(double firstNumber, double secondNumber) {
-        result = firstNumber / secondNumber;
+    public Double divideTwoNumbers(double firstNumber, double secondNumber) {
+        return firstNumber / secondNumber;
     }
 
-    public double getResult() {
-        return result;
-    }
+//    public double getResult() {
+//        return result;
+//    }
 }

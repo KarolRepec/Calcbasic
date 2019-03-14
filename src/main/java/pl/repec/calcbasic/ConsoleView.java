@@ -16,7 +16,7 @@ public class ConsoleView implements ICalcView {
 
     private void awaitUsersAction() {
         while (!quit) {
-            System.out.println("\nEnter action:   (6 to show available actions");
+            System.out.println("\nEnter action:   (7 to show available actions");
             int action = scanner.nextInt();
             scanner.nextLine();
 
@@ -32,7 +32,7 @@ public class ConsoleView implements ICalcView {
                     break;
 
                 case 2:
-                    System.out.println("Provide first number");
+                    System.out.println("Provide second number");
                     this.getSecondNumber();
                     break;
 
@@ -49,7 +49,11 @@ public class ConsoleView implements ICalcView {
                     break;
 
                 case 6:
-                    this.devideNumbers();
+                    this.divideNumbers();
+                    break;
+
+                case 7:
+                    this.printPossibleActions();
                     break;
             }
 
@@ -57,44 +61,59 @@ public class ConsoleView implements ICalcView {
 
     }
 
-    public double getFirstNumber() {
-        firstNumber = Double.parseDouble(scanner.nextLine());
-        return firstNumber;
-    }
-
-    public double getSecondNumber() {
-        secondNumber = Double.parseDouble(scanner.nextLine());
-        return secondNumber;
-    }
-
-    public void setResult(double calcResult) {
-        // Dunno what to do here, view should not hold state imho
-    }
-
-    public void addNumbers() {
-        if (firstNumber != null && secondNumber != null && operationType != null) {
-            handleOperation();
+    private void getFirstNumber() {
+        try {
+            firstNumber = Double.parseDouble(scanner.nextLine());
+        }catch (NumberFormatException e) {
+            displayError("Input digits only");
         }
+
+//        return firstNumber;
     }
 
-    public void subtractNumbers() {
+    private void getSecondNumber() {
+        try {
+            secondNumber = Double.parseDouble(scanner.nextLine());
+        }catch (NumberFormatException e) {
+            displayError("Input digits only");
+        }
+
+//        return secondNumber;
+    }
+
+    private void addNumbers() {
+        operationType = OperationType.ADDITION;
+        handleOperation();
+    }
+
+    private void subtractNumbers() {
         operationType = OperationType.EXTRACTION;
         handleOperation();
     }
 
     private void handleOperation() {
-        callback.getResult(firstNumber, secondNumber, operationType);
+        if (firstNumber == null) {
+            displayError("Use '1' to input first number");
+        }
+        if (secondNumber == null) {
+            displayError("Use '2' to input second number");
+        }
+        if (firstNumber != null && secondNumber != null && operationType != null) {
+            System.out.println(firstNumber + " " + operationType + " " + secondNumber + " = " + callback.getResult(firstNumber, secondNumber, operationType));
+        }
     }
 
-    public void multiplyNumbers() {
+    private void multiplyNumbers() {
         operationType = OperationType.MULTIPLICATION;
+        handleOperation();
     }
 
-    public void devideNumbers() {
+    private void divideNumbers() {
         operationType = OperationType.DIVISION;
+        handleOperation();
     }
 
-    public void displayError(String errorMessage) {
+    private void displayError(String errorMessage) {
         System.out.println("Booom muther fucker " + errorMessage);
     }
 
