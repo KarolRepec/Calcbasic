@@ -4,8 +4,8 @@ public class CalcModel {
     private double result;
 
 
-    public void addTwoNumbers(double firstNumber, double secondNumber) {
-        result = firstNumber + secondNumber;
+    Double addTwoNumbers(double firstNumber, double secondNumber) {
+        return firstNumber + secondNumber;
     }
 
     public void subtractTwoNUmbers(double firstNuber, double secondNumber) {
