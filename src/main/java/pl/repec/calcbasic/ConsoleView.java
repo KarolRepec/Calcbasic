@@ -3,17 +3,16 @@ package pl.repec.calcbasic;
 import java.util.Scanner;
 
 public class ConsoleView implements ICalcView {
-    private boolean quit = false;
-    private Scanner scanner = new Scanner(System.in);
-    public ViewControllerCallback callback;
-    private OperationType operationType;
     private Double firstNumber;
     private Double secondNumber;
+    private OperationType operationType;
+    private ViewControllerCallback callback;
+    private Scanner scanner = new Scanner(System.in);
+    private boolean quit = false;
 
     ConsoleView(ViewControllerCallback callback) {
         this.callback = callback;
     }
-
 
     private void awaitUsersAction() {
         while (!quit) {
@@ -28,10 +27,12 @@ public class ConsoleView implements ICalcView {
                     break;
 
                 case 1:
+                    System.out.println("Provide first number");
                     this.getFirstNumber();
                     break;
 
                 case 2:
+                    System.out.println("Provide first number");
                     this.getSecondNumber();
                     break;
 
@@ -52,7 +53,7 @@ public class ConsoleView implements ICalcView {
                     break;
             }
 
-     }
+        }
 
     }
 
@@ -67,7 +68,7 @@ public class ConsoleView implements ICalcView {
     }
 
     public void setResult(double calcResult) {
-        // Dunno what to do here, view should hold state imho
+        // Dunno what to do here, view should not hold state imho
     }
 
     public void addNumbers() {
@@ -101,13 +102,12 @@ public class ConsoleView implements ICalcView {
         this.callback = callbackHandler;
     }
 
-    public void start() {
-        printActions();
+    public void startPresentingUI() {
+        printPossibleActions();
         awaitUsersAction();
-
     }
 
-    private void printActions() {
+    private void printPossibleActions() {
         System.out.println("\nAvailable actions:\npress");
         System.out.println("0 - to shutdown\n" +
                 "1 - type first number\n" +

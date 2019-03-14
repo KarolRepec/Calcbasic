@@ -13,5 +13,5 @@ public interface ICalcView {
     void devideNumbers();
     void displayError(String errorMessage);
     void setCallbackHandler(ViewControllerCallback callbackHandler);
-    void start();
+    void startPresentingUI();
 }

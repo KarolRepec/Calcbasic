@@ -12,11 +12,6 @@ public class CalcBasicApplication {
 class Calculator {
 
     Calculator() {
-        CalcModel model = new CalcModel();
         CalcCtrl calcCtrl = new CalcCtrl();
-//        ICalcView view = new ConsoleView(calcCtrl);
-//
-//        calcCtrl.calcModel = model;
-//        calcCtrl.iCalcView = view;
     }
 }
