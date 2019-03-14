@@ -3,63 +3,58 @@ package pl.repec.calcbasic;
 import java.util.Scanner;
 
 public class ConsoleView implements ICalcView {
+    private boolean quit = false;
     private Scanner scanner = new Scanner(System.in);
-    private ViewControllerCallback callback;
+    public ViewControllerCallback callback;
     private OperationType operationType;
     private Double firstNumber;
     private Double secondNumber;
 
-    //ConsoleView() {}
+    ConsoleView(ViewControllerCallback callback) {
+        this.callback = callback;
+    }
 
-        public void start() {
-            boolean quit = false;
-            printActions();
 
-            firstNumber = 2.0;
-            secondNumber = 2.0;
-            operationType = OperationType.ADDITION;
+    private void awaitUsersAction() {
+        while (!quit) {
+            System.out.println("\nEnter action:   (6 to show available actions");
+            int action = scanner.nextInt();
+            scanner.nextLine();
 
-            handleOperation();
-        }
-//        while (!quit) {
-//            System.out.println("\nEnter action:   (6 to show available actions");
-//            int action = scanner.nextInt();
-//            scanner.nextLine();
-//
-//            switch (action) {
-//                case 0:
-//                    System.out.println("\nShutting down...");
-//                    quit = true;
-//                    break;
-//
-//                case 1:
-//                    this.getFirstNumber();
-//                    break;
-//
-//                case 2:
-//                    this.getSecondNumber();
-//                    break;
-//
-//                case 3:
-//                    this.addNumbers();
-//                    break;
-//
-//                case 4:
-//                    this.subtractNumbers();
-//                    break;
-//
-//                case 5:
-//                    this.multiplyNumbers();
-//                    break;
-//
-//                case 6:
-//                    this.devideNumbers();
-//                    break;
-//            }
+            switch (action) {
+                case 0:
+                    System.out.println("\nShutting down...");
+                    quit = true;
+                    break;
 
-   // }
+                case 1:
+                    this.getFirstNumber();
+                    break;
 
-//    }
+                case 2:
+                    this.getSecondNumber();
+                    break;
+
+                case 3:
+                    this.addNumbers();
+                    break;
+
+                case 4:
+                    this.subtractNumbers();
+                    break;
+
+                case 5:
+                    this.multiplyNumbers();
+                    break;
+
+                case 6:
+                    this.devideNumbers();
+                    break;
+            }
+
+     }
+
+    }
 
     public double getFirstNumber() {
         firstNumber = Double.parseDouble(scanner.nextLine());
@@ -104,6 +99,12 @@ public class ConsoleView implements ICalcView {
 
     public void setCallbackHandler(ViewControllerCallback callbackHandler) {
         this.callback = callbackHandler;
+    }
+
+    public void start() {
+        printActions();
+        awaitUsersAction();
+
     }
 
     private void printActions() {

@@ -5,17 +5,13 @@ public class CalcCtrl implements ViewControllerCallback {
      ICalcView iCalcView;
      CalcModel calcModel;
 
-    public CalcCtrl() {
-//        this.iCalcView = iCalcView;
-//        iCalcView.setCallbackHandler(this);
-//        this.calcModel = calcModel;
-        //init();
-    }
+    CalcCtrl() {
+        iCalcView = new ConsoleView(this);
+        calcModel = new CalcModel();
 
-    public void init(ViewControllerCallback callback) {
-        iCalcView.setCallbackHandler(callback);
         iCalcView.start();
     }
+
 
     public void addNumbers() {
 
@@ -91,7 +87,7 @@ public class CalcCtrl implements ViewControllerCallback {
                 calcModel.addTwoNumbers(firstDigit, secondDigit);
             }
             default:
-                System.out.println("Add your own actions");
+                System.out.println("Add your own actions, you need to handle all of the operation.");
         }
         return null;
     }

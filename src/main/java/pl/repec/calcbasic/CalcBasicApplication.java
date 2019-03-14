@@ -12,12 +12,11 @@ public class CalcBasicApplication {
 class Calculator {
 
     Calculator() {
-        ICalcView view = new ConsoleView();
         CalcModel model = new CalcModel();
         CalcCtrl calcCtrl = new CalcCtrl();
-
-        calcCtrl.calcModel = model;
-        calcCtrl.iCalcView = view;
-        calcCtrl.init(calcCtrl);
+//        ICalcView view = new ConsoleView(calcCtrl);
+//
+//        calcCtrl.calcModel = model;
+//        calcCtrl.iCalcView = view;
     }
 }
